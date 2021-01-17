@@ -56,9 +56,10 @@ class Student extends User {
   }
 
   getCourse() {
+    const dateNow = new Date();
+    const yearNow = dateNow.getFullYear();
     return yearNow - this._year;
   }
 }
-const dateNow = new Date();
-const yearNow = dateNow.getFullYear();
-const test = new User('Test', 'Testov', 2017);
+
+const test = new Student('Test', 'Testov', 2018);
