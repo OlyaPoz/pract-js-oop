@@ -20,6 +20,7 @@ class User {
     if(typeof str !== 'string'){
       throw new TypeError('Not string')
     }
+    this._newName = name;
   }
 
   get name() {
@@ -28,8 +29,9 @@ class User {
 
   set surname(str) {
     if(typeof str !== 'string'){
-      throw new TypeError('Not string')
+      throw new TypeError('Not string');
     }
+    this._newSurname = surname;
   }
 
   get surname() {
@@ -41,14 +43,15 @@ class User {
 }
 
 class Student extends User {
-  constructor(name, surname, year) {
-    super(name, surname);
+  constructor(year) {
+    super('Test', surname);
     this._year = year;
   }
   set year(v) {
     if(typeof v !== 'number'){
-      throw new TypeError('Enter a number')
+      throw new TypeError('Enter a number');
     }
+    this._yearValue = year;
   }
 
   get year() {
@@ -58,8 +61,9 @@ class Student extends User {
   getCourse() {
     const dateNow = new Date();
     const yearNow = dateNow.getFullYear();
-    return yearNow - this._year;
+    return yearNow - this._year + 1;
   }
 }
 
-const test = new Student('Test', 'Testov', 2018);
+const test = new User('Test', 'Testov');
+const yearAdmission = new Student(2018);
