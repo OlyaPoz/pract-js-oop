@@ -12,15 +12,15 @@
 
 class User {
   constructor(name, surname) {
-    this._name = name;
-    this._surname = surname;
+    this.name = name;
+    this.surname = surname;
   }
   
   set name(str) {
     if(typeof str !== 'string'){
       throw new TypeError('Not string')
     }
-    this._newName = name;
+    this._name = str;
   }
 
   get name() {
@@ -31,7 +31,7 @@ class User {
     if(typeof str !== 'string'){
       throw new TypeError('Not string');
     }
-    this._newSurname = surname;
+    this._surname = str;
   }
 
   get surname() {
@@ -43,15 +43,15 @@ class User {
 }
 
 class Student extends User {
-  constructor(year) {
-    super('Test', surname);
-    this._year = year;
+  constructor(name, surname, year) {
+    super(name, surname)
+    this.year = year;
   }
   set year(v) {
     if(typeof v !== 'number'){
       throw new TypeError('Enter a number');
     }
-    this._yearValue = year;
+    this._year = v;
   }
 
   get year() {
@@ -61,9 +61,17 @@ class Student extends User {
   getCourse() {
     const dateNow = new Date();
     const yearNow = dateNow.getFullYear();
-    return yearNow - this._year + 1;
+    const studentCourse = yearNow - this._year + 1;
+    if(studentCourse > 5){
+      return `Студент уже не студент`;
+    }
+    if(studentCourse === 1) {
+      return `Студент в этом году поступит на ${studentCourse} курс`;
+    }
+    return `Студент в этом году перейдет на ${studentCourse} курс`;
   }
 }
 
-const test = new User('Test', 'Testov');
-const yearAdmission = new Student(2018);
+const test = new Student('Test', 'Testov', 2021);
+const vasya = new Student('Vasya', 'Vasin', 2018);
+const olya = new Student('Olya', 'Pozdniakova', 2015);
