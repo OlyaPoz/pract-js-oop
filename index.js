@@ -62,16 +62,11 @@ class Student extends User {
     const dateNow = new Date();
     const yearNow = dateNow.getFullYear();
     const studentCourse = yearNow - this._year + 1;
-    if(studentCourse > 5){
-      return `Студент уже не студент`;
+    if(studentCourse > 5 || studentCourse < 1){
+      return; // undefined
     }
-    if(studentCourse === 1) {
-      return `Студент в этом году поступит на ${studentCourse} курс`;
-    }
-    return `Студент в этом году перейдет на ${studentCourse} курс`;
+    return studentCourse; 
   }
 }
 
-const test = new Student('Test', 'Testov', 2021);
-const vasya = new Student('Vasya', 'Vasin', 2018);
-const olya = new Student('Olya', 'Pozdniakova', 2015);
+const test = new Student('Test', 'Testov', 2020);
